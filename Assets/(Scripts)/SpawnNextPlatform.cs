@@ -1,18 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MasterTile : MonoBehaviour
+public class SpawnNextPlatform : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager = default;
     [SerializeField] private GameObject _tiles = default;
+    [SerializeField] private Transform _spawnPoint = default;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            _gameManager.IncreaseScore();
-            Destroy(_tiles, 1f);
+        { 
+            Instantiate(_tiles, _spawnPoint.transform.position, Quaternion.identity);
         }
     }
 }
